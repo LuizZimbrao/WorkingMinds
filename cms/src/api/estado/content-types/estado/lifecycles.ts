@@ -1,19 +1,20 @@
+const { ApplicationError } = require("@strapi/utils").errors;
+
 export default {
   async beforeDeleteMany(event) {
     const { where } = event.params;
 
-    const state = await strapi.db.query('api::estado.estado').findMany({
+    const states = await strapi.db.query('api::estado.estado').findMany({
       where,
       populate: ['cidades'],
     });
     
 
-    console.log('>>>>>>>state', state);
-    
-
-    /* if (state && state.cidades.length > 0) {
-      throw new Error('Não é possível remover o estado, pois há cidades associadas a ele.');
-    } */
+    states?.forEach(state => {
+      if (state?.cidades?.length > 0) {
+        throw new ApplicationError(`Não é possível remover os estados selecionado, pois há cidades associadas a alguns deles.`);
+      }
+    })
   },
   async beforeDelete(event) {
     const { where } = event.params;
@@ -23,8 +24,10 @@ export default {
       populate: ['cidades'],
     });
 
-    if (state && state.cidades.length > 0) {
-      throw new Error('Não é possível remover o estado, pois há cidades associadas a ele.');
+    
+
+    if (state && state?.cidades?.length > 0) {
+      throw new ApplicationError('Não é possível remover o estado, pois há cidades associadas a ele.');
     }
   },
 };

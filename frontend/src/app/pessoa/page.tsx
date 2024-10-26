@@ -9,17 +9,13 @@ export default function PersonList() {
   const router = useRouter();
   const { data: people, loading, error } = useFetch<PersonData[]>("/pessoas?populate=*");
 
-  const handleAddPerson = () => {
-    router.push("/pessoa/add");
-  };
-
   if (loading) {
     return (
-      <div className="flex flex-col space-y-4 p-6">
+      <div className="flex items-center w-full flex-col space-y-4 p-6">
         {[...Array(5)].map((_, index) => (
           <Skeleton
             key={index}
-            className="h-16 w-full rounded-lg bg-gray-300 animate-pulse"
+            className="h-28 w-full max-w-sm rounded-lg bg-gray-300 animate-pulse"
           />
         ))}
       </div>
@@ -39,7 +35,7 @@ export default function PersonList() {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Lista de Pessoas</h2>
         <button
-          onClick={handleAddPerson}
+          onClick={() => router.push("/pessoa/add")}
           className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
         >
           Adicionar
@@ -49,7 +45,8 @@ export default function PersonList() {
         {people?.map((person) => (
           <li
             key={person.documentId}
-            className="p-4 border rounded-lg shadow-sm hover:shadow-md transition duration-300"
+            className="p-4 cursor-pointer border rounded-lg shadow-sm hover:shadow-md transition duration-300"
+            onClick={() => router.push(`/pessoa/${person.documentId}`)}
           >
             <h3 className="text-lg font-semibold text-gray-700">
               {person.nome}

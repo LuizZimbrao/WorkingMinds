@@ -25,6 +25,7 @@ import { CreatePerson } from "@/types/person";
 import { StateData } from "@/types/state";
 import { CityData } from "@/types/city";
 import { createPerson } from "@/services/personService";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   nome: z.string().nonempty("Nome é obrigatório").max(250, {
@@ -39,6 +40,7 @@ const formSchema = z.object({
 });
 
 export default function PeopleForm() {
+  const router = useRouter();
   const {
     data: states,
     error,
@@ -74,7 +76,10 @@ export default function PeopleForm() {
   }, [loading, error, states, selectedState, setValue]);
 
   async function onSubmit(values: CreatePerson) {
-    await createPerson(values);
+    const result = await createPerson(values);
+
+    if (result?.data.documentId)
+      router.push(`/pessoa/${result.data.documentId}`);
   }
 
   if (loading)

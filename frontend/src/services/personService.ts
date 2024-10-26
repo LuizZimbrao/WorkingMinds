@@ -14,8 +14,12 @@ export async function createPerson(CreatePerson: CreatePerson) {
 
     const result = await response.json();
 
-    if (result.data.documentId)
+    if (result?.data.documentId) {
       await updatePerson(result.data.documentId, CreatePerson);
+
+      return result;
+    }
+
   } catch (error) {
     console.error("Erro ao criar Pessoa:", error);
   }
@@ -23,7 +27,7 @@ export async function createPerson(CreatePerson: CreatePerson) {
 
 export async function updatePerson(personId: string, CreatePerson: CreatePerson) {
   try {
-    const response = await fetch(
+    await fetch(
       `http://localhost:1337/api/pessoas/${personId}`,
       {
         method: "PUT",
@@ -35,8 +39,6 @@ export async function updatePerson(personId: string, CreatePerson: CreatePerson)
         }),
       }
     );
-    const result = await response.json();
-    console.log("Pessoa atualizada:", result);
   } catch (error) {
     console.error("Erro ao atualizar Pessoa:", error);
   }

@@ -1,0 +1,17 @@
+{
+  "name": "workingminds",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:frontend": "cd frontend && npm run dev",
+    "start:strapi": "cd cms && npm run develop",
+    "start": "concurrently \"npm run start:strapi\" \"npm run start:frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

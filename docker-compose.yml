@@ -1,10 +1,29 @@
-version: '3.8'
+version: "3.8"
 
 services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    command: npm start
+    depends_on:
+      - cms
+
   cms:
     build:
       context: ./cms
     container_name: cms
+    image: strapi:latest
+    restart: unless-stopped
+    volumes:
+      - ./cms/config:/opt/app/config
+      - ./cms/src:/opt/app/src
+      - ./cms/package.json:/opt/package.json
+      - ./cms/yarn.lock:/opt/yarn.lock
+      - ./cms/.env:/opt/app/.env
+      - ./cms/public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
-    command: npm start
+    expose:
+      - "1337"

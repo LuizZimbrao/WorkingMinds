@@ -25,7 +25,7 @@ function useFetch<T>(
           },
         };
 
-        const response = await fetch(`http://localhost:1337/api${url}`, options);
+        const response = await fetch(`http://127.0.0.1:1337/api${url}`, options);
 
         if (!response.ok) {
           throw new Error(`Erro: ${response.status} ${response.statusText}`);

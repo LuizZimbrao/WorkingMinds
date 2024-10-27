@@ -2,7 +2,7 @@ import { CreatePerson } from "@/types/person";
 
 export async function createPerson(CreatePerson: CreatePerson) {
   try {
-    const response = await fetch("http://localhost:1337/api/pessoas", {
+    const response = await fetch(`http://127.0.0.1:1337/api/pessoas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export async function createPerson(CreatePerson: CreatePerson) {
 export async function updatePerson(personId: string, CreatePerson: CreatePerson) {
   try {
     await fetch(
-      `http://localhost:1337/api/pessoas/${personId}`,
+      `http://127.0.0.1:1337/api/pessoas/${personId}`,
       {
         method: "PUT",
         headers: {

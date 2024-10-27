@@ -20,7 +20,6 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import useFetch from "@/hooks/useFetch";
 import { CreatePerson } from "@/types/person";
 import { StateData } from "@/types/state";
 import { CityData } from "@/types/city";
@@ -39,14 +38,8 @@ const formSchema = z.object({
   cidade: z.string().nonempty("Cidade é obrigatória"),
 });
 
-export default function PeopleForm() {
+export default function PeopleFormComponent({ states }: { states: StateData[] }) {
   const router = useRouter();
-  const {
-    data: states,
-    error,
-    loading,
-  } = useFetch<StateData[]>("/estados?populate=*");
-
   const form = useForm<CreatePerson>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,35 +50,23 @@ export default function PeopleForm() {
     },
   });
 
-  const {
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = form;
+  const { handleSubmit, setValue, watch, formState: { errors } } = form;
   const [cities, setCities] = useState<CityData[]>([]);
-
   const selectedState = watch("estado");
 
   useEffect(() => {
-    if (!error && !loading && states) {
-      const state = states.find((e) => e.documentId === selectedState);
-      setCities(state ? state.cidades : []);
-      setValue("cidade", "");
-    }
-  }, [loading, error, states, selectedState, setValue]);
+    const state = states.find((e) => e.documentId === selectedState);
+    setCities(state ? state.cidades : []);
+    setValue("cidade", "");
+  }, [states, selectedState, setValue]);
 
   async function onSubmit(values: CreatePerson) {
     const result = await createPerson(values);
 
-    if (result?.data.documentId)
+    if (result?.data.documentId) {
       router.push(`/pessoa/${result.data.documentId}`);
+    }
   }
-
-  if (loading)
-    return <p className="text-center text-gray-500">Carregando...</p>;
-
-  if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <Form {...form}>
@@ -142,7 +123,7 @@ export default function PeopleForm() {
 
         <FormField
           name="estado"
-          render={({}) => (
+          render={() => (
             <FormItem>
               <FormLabel className="text-gray-600">Estado</FormLabel>
               <FormControl>
@@ -151,12 +132,12 @@ export default function PeopleForm() {
                   value={selectedState || ""}
                 >
                   <SelectTrigger className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-                    {states?.find(
+                    {states.find(
                       (state) => state.documentId === watch("estado")
                     )?.nome || "Selecione o estado"}
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    {states?.map((estado) => (
+                    {states.map((estado) => (
                       <SelectItem
                         className="cursor-pointer"
                         key={estado.documentId}
@@ -179,7 +160,7 @@ export default function PeopleForm() {
 
         <FormField
           name="cidade"
-          render={({}) => (
+          render={() => (
             <FormItem>
               <FormLabel className="text-gray-600">Cidade</FormLabel>
               <FormControl>
@@ -192,12 +173,12 @@ export default function PeopleForm() {
                     className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
                     disabled={!selectedState}
                   >
-                    {cities?.find(
+                    {cities.find(
                       (cidade) => cidade.documentId === watch("cidade")
                     )?.nome || "Selecione a cidade"}
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    {cities?.map((cidade) => (
+                    {cities.map((cidade) => (
                       <SelectItem
                         className="cursor-pointer"
                         key={cidade.documentId}

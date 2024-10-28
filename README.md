@@ -1,6 +1,7 @@
 ## Pré-requisitos
 
 - [Docker](https://docs.docker.com/get-docker/) e [Docker Compose](https://docs.docker.com/compose/install/) instalados em sua máquina.
+- Execute o docker caso necessario para rodar o docker-compose
 
 ## Instruções de Instalação e Execução
 

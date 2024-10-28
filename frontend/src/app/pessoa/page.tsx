@@ -32,7 +32,7 @@ export default function PersonList() {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 space-x-5">
         <h2 className="text-2xl font-semibold">Lista de Pessoas</h2>
         <button
           onClick={() => router.push("/pessoa/add")}

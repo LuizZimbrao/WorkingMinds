@@ -199,12 +199,20 @@ export default function PeopleFormComponent({ states }: { states: StateData[] })
           )}
         />
 
-        <Button
-          type="submit"
-          className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700"
-        >
-          Cadastrar
-        </Button>
+        <div className="flex flex-col space-y-4">
+          <Button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700"
+          >
+            Cadastrar
+          </Button>
+          <Button
+            className="w-full bg-white text-indigo-700 py-2 rounded-md"
+            onClick={() => router.back()}
+          >
+            Voltar
+          </Button>
+        </div>
       </form>
     </Form>
   );

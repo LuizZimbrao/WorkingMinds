@@ -17,6 +17,8 @@
 
    ```bash
    docker-compose up --build
+   ou
+   docker compose up --build
    ```
 
 

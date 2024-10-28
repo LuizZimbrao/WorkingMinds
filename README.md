@@ -25,7 +25,7 @@
 - Crie uma conta de administrador ao acessar a interface do Strapi.
 - Popule os dados: Cadastre os estados e cidades no Strapi para que eles apareçam nos selects da aplicação frontend.
 
-3. **Acesse a aplicação abaixo**
+5. **Acesse a aplicação abaixo**
 - Frontend (Next.js): http://localhost:3000
 
 ## Instruções de Instalação e Execução sem o Docker

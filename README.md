@@ -8,13 +8,13 @@
 1. **Clone o repositório ou baixe o zip**
 
    ```bash
-      git clone https://github.com/LuizZimbrao/WorkingMinds.git
-      cd WorkingMinds
+   git clone https://github.com/LuizZimbrao/WorkingMinds.git
+   cd WorkingMinds
    ```
 2. **Execute o Docker Compose**
 
    ```bash
-      docker-compose up --build
+   docker-compose up --build
    ```
 
 3. **Acesse as Aplicações**

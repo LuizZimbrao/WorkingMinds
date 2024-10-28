@@ -8,7 +8,7 @@
 1. **Clone o repositório ou baixe o zip**
 
    ```bash
-      git clone git@github.com:LuizZimbrao/WorkingMinds.git
+      git clone https://github.com/LuizZimbrao/WorkingMinds.git
       cd WorkingMinds
    ```
 2. **Execute o Docker Compose**

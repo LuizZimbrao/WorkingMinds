@@ -23,6 +23,8 @@ COPY --from=build /opt/node_modules ./node_modules
 WORKDIR /opt/app
 COPY --from=build /opt/app ./
 ENV PATH=/opt/node_modules/.bin:$PATH
+ENV APP_KEYS=Kx/4nwbQa9DFkI59E8a7qA==,CJtHGBsnjsD34wCboAnzPQ==,qPhs0wrPccSB3wPNyhnIOQ==,FkdnDejMu338JGva637dYw==
+ENV API_TOKEN_SALT=tICfiSY/QVDWOqyfhjanBQ==
 
 RUN chown -R node:node /opt/app
 USER node

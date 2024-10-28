@@ -25,7 +25,8 @@ export default function PersonList() {
   if (error) {
     return (
       <div className="p-6 text-center text-red-600">
-        Ocorreu um erro ao carregar a lista de pessoas.
+        Ocorreu um erro ao carregar a lista de pessoas.<br/>
+        Verifique se sua conta no strapi já foi criada e tente novamente!
       </div>
     );
   }

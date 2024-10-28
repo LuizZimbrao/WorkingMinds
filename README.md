@@ -1,107 +1,27 @@
-Prazo para entrega no Github: até dia 28/10/24 (segunda)
-Entrega: O desafio deve ser entregue via GitHub. Certifique-se de incluir todas as instruções necessárias no repositório para a execução e testes do projeto.
+## Pré-requisitos
 
+- [Docker](https://docs.docker.com/get-docker/) e [Docker Compose](https://docs.docker.com/compose/install/) instalados em sua máquina.
 
-Desafio Técnico
+## Instruções de Instalação e Execução
 
+1. **Clone o repositório ou baixe o zip**
 
-O desafio consiste em desenvolver uma aplicação utilizando Strapi V5 no backend e Next.js no frontend, com o objetivo de avaliar suas habilidades técnicas.
+   ```bash
+      git clone git@github.com:LuizZimbrao/WorkingMinds.git
+      cd WorkingMinds
+   ```
+2. Execute o Docker Compose
 
+   ```bash
+      docker-compose up --build
+   ```
 
-Requisitos da Aplicação:
+3. Acesse as Aplicações
 
-Frontend (Next.js)
-1. Crie uma rota em Next.js: `/pessoa/add`
+Frontend (Next.js): http://localhost:3000
+Backend (Strapi): http://localhost:1337/admin
 
-   - Nessa rota, desenvolva um formulário com os seguintes campos:
+4. Configuração do Strapi
 
-
-   Campo: Nome
-
-   - Tipo: Texto
-
-   - Obrigatório: Sim
-
-   - Validação: No máximo 250 caracteres (Validação no lado do cliente - Client Side)
-
-   - Placeholder: `"Seu Nome"`
-
-
-   Campo: Email
-
-   - Tipo: Texto
-
-   - Obrigatório: Sim
-
-   - Validação: O email deve ser válido e **único** (Validação no lado do servidor - Server Side)
-
-   - Placeholder: `"email@gmail.com"`
-
-
-    Campo: Estado
-
-   - Tipo: Combobox (Seleção de opções)
-
-   - Obrigatório: Sim
-
-   - Dados: Devem ser carregados do **Strapi** (Renderização Server Side no Next.js)
-
-   - Validação: O estado selecionado deve existir no Strapi (Validação no servidor)
-
-
-    Campo: Cidade
-
-   - Tipo: Combobox (Seleção de opções)
-
-   - Obrigatório: Sim
-
-   - Dados: Devem ser carregados dinamicamente com base no estado selecionado (Renderização Client Side no Next.js)
-
-   - Validação: A cidade selecionada deve existir no Strapi (Validação no servidor)
-
-
-2. O envio do formulário deve ser feito via requisição assíncrona.
-
-   - Em caso de erros de validação, as mensagens apropriadas devem ser exibidas ao usuário.
-
-   - Em caso de sucesso, o usuário deve ser redirecionado para uma página com a rota `/pessoa/{id do cadastro}`, onde os dados cadastrados serão exibidos.
-
-
-Backend (Strapi V5)
-
-
-1. Crie os seguintes modelos no Strapi:
-
-   - Estado
-
-   - Cidade
-
-   - Pessoa
-
-   
-
-2. Os modelos devem ser configurados para atender às regras do formulário. 
-
-
-3. Restrições:
-
-   - Uma cidade não pode ser removida se houver uma pessoa associada a ela.
-
-   - Um estado não pode ser removido se houver uma cidade associada a ele.
-
-
-4. As APIs necessárias para o cadastro devem estar acessíveis publicamente.
-
-
-Plus (Diferencial)
-- Configure o projeto para ser executado via Docker Compose. Se necessário, adicione scripts adicionais para garantir que todo o sistema funcione corretamente.
-
-
-Readme
-
-- Inclua um README.md com as informações necessárias para rodar o projeto localmente (passo a passo) para que a solução possa ser testada sem dificuldades.
-
-
-Entrega
-
-- O desafio deve ser entregue via GitHub. Certifique-se de incluir todas as instruções necessárias no repositório para a execução e testes do projeto.
+Crie uma conta de administrador ao acessar a interface do Strapi.
+Popule os dados: Cadastre os estados e cidades no Strapi para que eles apareçam nos selects da aplicação frontend.

@@ -11,7 +11,7 @@
    git clone https://github.com/LuizZimbrao/WorkingMinds.git
    cd WorkingMinds
    ```
-2. **Execute o Docker Compose**
+2. **Execute o Docker Compose em um terminal na pasta do projeto**
 
    ```bash
    docker-compose up --build

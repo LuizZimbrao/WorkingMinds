@@ -41,20 +41,17 @@ export default async ({ strapi }) => {
                   enabled: true,
                 },
               });
-              console.log(`Permissão "${entity}.${action}" criada e habilitada.`);
             } else {
               await strapi.query('plugin::users-permissions.permission').update({
                 where: { id: permission.id },
                 data: { enabled: true },
               });
-              console.log(`Permissão "${entity}.${action}" habilitada.`);
             }
           })
         )
       )
     );
 
-    console.log('Permissões públicas para as entidades configuradas com sucesso.');
   } catch (error) {
     console.error('Erro ao configurar permissões:', error);
   }
